@@ -13,7 +13,7 @@ module add --name=com.microsoft.sqlserver --resources=/tmp/mssql-jdbc-7.4.1.jre1
 data-source add --name=TestDS --jndi-name=java:/jdbc/TestDS --driver-name=mssql --connection-url=jdbc:sqlserver://mssql:1433;databaseName=testdb --user-name=sa --password=YourStrong!Passw0rd
 
 # Configure the JMS test queue
-jms-queue add --queue-address=testQueue --entries=queue/test,java:jboss/exported/jms/queue/test
+jms-queue add --queue-address=testQueue --entries=queue/test,java:/jms/queue/testQueue
 
 # Run the batch commands
 run-batch

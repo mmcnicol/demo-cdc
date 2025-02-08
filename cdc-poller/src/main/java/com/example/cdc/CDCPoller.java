@@ -23,7 +23,7 @@ public class CDCPoller {
     @Resource(lookup = "java:/jdbc/TestDS")
     private DataSource dataSource;
 
-    @Resource(lookup = "java:jboss/exported/jms/queue/test")
+    @Resource(lookup = "java:/jms/queue/testQueue")
     private Queue hl7Queue;
 
     @Inject
@@ -61,8 +61,26 @@ public class CDCPoller {
                 int id = rs.getInt("Id");
                 String eventData = rs.getString("EventData");
 
-                logger.infof("Processing change: operation=%s, id=%d", operation, id);
-                sendJMSMessage(operation, id, eventData);
+                String operationDescription;
+                switch (operation) {
+                    case "1":
+                        operationDescription = "delete";
+                        break;
+                    case "2":
+                        operationDescription = "insert";
+                        break;
+                    case "3":
+                        operationDescription = "update (before)";
+                        break;
+                    case "4":
+                        operationDescription = "update (after)";
+                        break;
+                    default:
+                        operationDescription = "unknown";
+                }
+
+                logger.infof("Processing change: operation=%s, id=%d, description=%s", operation, id, operationDescription);
+                sendJMSMessage(operationDescription, id, eventData);
                 updateLastProcessedLSN(conn, toLSN);
             }
 

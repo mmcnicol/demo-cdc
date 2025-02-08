@@ -1,12 +1,6 @@
 USE master;
 GO
 
--- Enable SQL Server Agent
-EXEC sp_configure 'Agent XPs', 1;
-GO
-RECONFIGURE
-GO
-
 CREATE DATABASE testdb;
 GO
 

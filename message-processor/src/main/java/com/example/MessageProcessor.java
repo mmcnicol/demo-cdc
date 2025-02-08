@@ -12,7 +12,7 @@ import javax.ejb.ActivationConfigProperty;
 import org.jboss.logging.Logger;
 
 @MessageDriven(activationConfig = {
-    @ActivationConfigProperty(propertyName = "destination", propertyValue = "java:jboss/exported/jms/queue/test"),
+    @ActivationConfigProperty(propertyName = "destination", propertyValue = "java:/jms/queue/testQueue"),
     @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")
 })
 public class MessageProcessor implements MessageListener {

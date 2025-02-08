@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/mssql/server:2019-latest
 
 USER root
 
-RUN /bin/sh -c '/opt/mssql/bin/mssql-conf set sqlagent.enabled true'
+#RUN /bin/sh -c '/opt/mssql/bin/mssql-conf set sqlagent.enabled true'
 
 EXPOSE 1433
 
