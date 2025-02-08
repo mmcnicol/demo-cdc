@@ -35,9 +35,9 @@
                 <version>3.3.1</version>
             </plugin>
             <plugin>
-                <groupId>org.jboss.as.plugins</groupId>
-                <artifactId>jboss-as-maven-plugin</artifactId>
-                <version>7.7.Final</version>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>4.2.1.Final</version>
                 <configuration>
                     <hostname>localhost</hostname>
                     <port>9990</port>
