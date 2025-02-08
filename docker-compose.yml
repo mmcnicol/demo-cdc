@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  mssql:
+    build:
+      context: ./mssql
+    environment:
+      SA_PASSWORD: "YourStrong!Passw0rd"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - demo-network
+
+  wildfly:
+    build:
+      context: ./wildfly
+    ports:
+      - "8080:8080"
+      - "9990:9990"
+    depends_on:
+      - mssql
+    networks:
+      - demo-network
+
+volumes:
+  mssql-data:
+
+networks:
+  demo-network:
